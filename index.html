@@ -1,0 +1,71 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>Random HTML</title>
+	<style>
+		body{font-family:Segoe UI,Roboto,Arial;margin:2rem;background:#f6f8fa;color:#111}
+		header{display:flex;justify-content:space-between;align-items:center}
+		.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-top:1rem}
+		.card{background:#fff;border:1px solid #e1e4e8;padding:1rem;border-radius:8px}
+		footer{margin-top:2rem;color:#666;font-size:.9rem}
+	</style>
+</head>
+<body>
+	<header>
+		<h1>Creatorspace — Random Demo</h1>
+		<nav>
+			<a href="#">Home</a> |
+			<a href="#about">About</a> |
+			<a href="#contact">Contact</a>
+		</nav>
+	</header>
+
+	<section class="grid">
+		<article class="card">
+			<h2>Random Quote</h2>
+			<p id="quote">"Creativity takes courage." — Henri Matisse</p>
+			<button onclick="newQuote()">New Quote</button>
+		</article>
+
+		<article class="card">
+			<h2>Color Picker</h2>
+			<input type="color" id="picker" value="#3b82f6" onchange="updateColor()">
+			<div id="swatch" style="height:40px;margin-top:8px;border-radius:4px"></div>
+		</article>
+
+		<article class="card">
+			<h2>Random Image</h2>
+			<img id="randImg" src="https://picsum.photos/300/200?random=1" alt="random" style="max-width:100%;border-radius:6px">
+			<div style="margin-top:8px">
+				<button onclick="document.getElementById('randImg').src='https://picsum.photos/300/200?random='+Date.now()">Shuffle</button>
+			</div>
+		</article>
+	</section>
+
+	<footer>
+		<p id="about">A tiny playground with random elements.</p>
+	</footer>
+
+	<script>
+		const quotes = [
+			'Creativity takes courage. — Henri Matisse',
+			'You miss 100% of the shots you don’t take. — Wayne Gretzky',
+			'Simplicity is the ultimate sophistication. — Leonardo da Vinci',
+			'Stay hungry, stay foolish. — Steve Jobs'
+		];
+		function newQuote(){
+			const q = quotes[Math.floor(Math.random()*quotes.length)];
+			document.getElementById('quote').textContent = '"'+q+'"';
+		}
+		function updateColor(){
+			const c = document.getElementById('picker').value;
+			document.getElementById('swatch').style.background = c;
+		}
+		// init
+		updateColor();
+	</script>
+</body>
+</html>
